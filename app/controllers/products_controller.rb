@@ -16,9 +16,9 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new(product_params)
+    @product = current_user.products.new(product_params)
     if @product.save
-      redirect_to @product, notice: 'Product was successfully created.'
+      redirect_to root_path, notice: 'Product was successfully created.'
     else
       render :new
     end
@@ -27,7 +27,7 @@ class ProductsController < ApplicationController
   def update
     @product = current_user.products.find(params[:id])
     if @product.update(product_params)
-      redirect_to @product, notice: 'Product was successfully updated.'
+      redirect_to root_path, notice: 'Product was successfully updated.'
     else
       render :edit
     end
