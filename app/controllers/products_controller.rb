@@ -17,6 +17,7 @@ class ProductsController < ApplicationController
 
   def create
     @product = current_user.products.new(product_params)
+    authorize @product
     if @product.save
       redirect_to root_path, notice: 'Product was successfully created.'
     else
@@ -25,7 +26,8 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @product = current_user.products.find(params[:id])
+    @product = Product.find(params[:id])
+    authorize @product
     if @product.update(product_params)
       redirect_to root_path, notice: 'Product was successfully updated.'
     else
@@ -34,7 +36,8 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product = current_user.products.find(params[:id])
+    @product = Product.find(params[:id])
+    authorize @product
     @product.destroy
     redirect_to products_url, notice: 'Product was successfully destroyed.'
   end
