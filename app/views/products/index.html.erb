@@ -4,6 +4,9 @@
   <%= current_user.roles.pluck(:name) %><br>
   <%= link_to "Edit profile", edit_user_registration_path %>
   <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
+    <% if current_user.has_role?(:admin) %>
+      <%= link_to "edit user role",users_path %><br>
+    <% end %>  
 <% else %>
   <%= button_to "Sign in", new_user_session_path %> 
 <% end %>
