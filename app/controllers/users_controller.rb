@@ -1,18 +1,18 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all
+    @users = User.all.where.not(email: "akhiln6@gmail.com")
   end
 
-  def show
-    @user = User.find(params[:id])
-  end
+  
 
   def edit
     @user = User.find(params[:id])
+    authorize @user
   end
 
   def update
     @user = User.find(params[:id])
+    authorize @user
     if @user.update(user_params)
       redirect_to root_path, notice: 'Product was successfully updated.'
     else
