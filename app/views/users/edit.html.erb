@@ -1,4 +1,3 @@
-<h3>hai all</h3>
 <%= form_with model: @user do |form| %>
 	<%= form.collection_check_boxes :role_ids, Role.all, :id, :name %> 
 	<%= @user.errors[:roles] %> 
