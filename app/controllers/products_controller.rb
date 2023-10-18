@@ -20,8 +20,7 @@ class ProductsController < ApplicationController
     authorize @product
     if @product.save
       redirect_to root_path, notice: 'Product was successfully created.'
-      ProductMailer.with(product_list: @product).new_product_list_email
-      flash[:success] = "Thank you for your order! We'll get contact you soon!"
+      ProductMailer.with(product_list: @product).new_product_list_email.deliver_now
     else
       render :new
     end
