@@ -6,7 +6,22 @@
     <title>hiiii</title>
 </head>
 <body>
-    <p> hey man...new product added in the list </p>
-    <%= @product_list.name%>
+    <p> hey man...new product,<%= @product_list.name%> added in the list </p>
+    
+    <table>
+    	<thead><h5>PRODUCTS LIST</h5></thead>
+    	<tbody>
+				<tr>
+						<th>Name</th>
+						<th>Price</th>
+				</tr> 
+				<% @product_lists.each do |product|%>
+						<tr>
+						<td><%= product.name %></td>
+						<td><%= product.price %></td>
+						</tr><br>                      
+				<% end %>
+    </tbody>
+    </table>  
 </body>
 </html>
